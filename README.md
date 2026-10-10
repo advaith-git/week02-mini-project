@@ -53,3 +53,7 @@ GitHub Actions runs `test.sh` on every push and pull request.
 - Temperatures below absolute zero are not rejected.
 - Extra input after the temperature is ignored.
 - Output shows about 6 significant digits.
+
+## AI-use Disclosure
+
+Claude Opus 5.5 was used to help break the project guide into clear steps, divide the work between team members, and understand what each Git command does, including branching, committing, pushing, and syncing with main. It also explained the GitHub workflow the team followed, such as opening pull requests, reviewing a teammate’s work before merging, and fixing mistakes like an untracked .gitignore file. The team reviewed every file, wrote the main function, ran all tests ourselves, and confirmed the results before submitting.
