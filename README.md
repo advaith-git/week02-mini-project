@@ -1,30 +1,55 @@
-# Week 02 Class Project: Ohm's Law Calculator
+# Week 02 Mini Project: Temperature Conversion App
 
-## Purpose
-Reads a voltage in volts and a resistance in ohms and prints the current using I = V / R.
+Converts a temperature between Celsius and Fahrenheit from the terminal.
 
-## Input format
-Two numbers separated by whitespace: voltage first, then resistance.
-Example: `12 4`
+## Setup
 
-## Build and run
+Requires Ubuntu (or WSL) with g++ (C++17), Git, and bash.
+
+    sudo apt update
+    sudo apt install build-essential git gdb
+    git clone https://github.com/advaith-git/week02-mini-project.git
+    cd week02-mini-project
+
+## Input/output contract
+
+Input is a direction followed by a temperature, separated by a space.
+The direction is `CtoF` or `FtoC` and is case-sensitive.
+
+| Situation | Output |
+|---|---|
+| Celsius to Fahrenheit | `0 C = 32 F` |
+| Fahrenheit to Celsius | `32 F = 0 C` |
+| Direction other than CtoF or FtoC | `Unsupported direction` |
+| Temperature is not a number | `Invalid input` |
+
+## Acceptance tests
+
+| Test | Input | Expected output |
+|---|---|---|
+| 1 | `CtoF 0` | `0 C = 32 F` |
+| 2 | `FtoC 32` | `32 F = 0 C` |
+| 3 | `KtoC 100` | `Unsupported direction` |
+| 4 (edge case) | `CtoF abc` | `Invalid input` |
+| 5 (edge case) | `CtoF -40` | `-40 C = -40 F` |
+
+## Build and test
+
+Build and run manually:
+
+    mkdir -p build
     g++ -std=c++17 -Wall -Wextra -pedantic src/main.cpp -o build/app
     ./build/app
 
-## Run the tests
+Run all acceptance tests:
+
     bash test.sh
 
-## Example output
-    $ echo "12 4" | ./build/app
-    Current: 3 A
-    $ echo "12 0" | ./build/app
-    Invalid input
+GitHub Actions runs `test.sh` on every push and pull request.
 
 ## Limitations
-- Resistance must be positive. Zero or negative resistance prints "Invalid input".
-- Negative voltage is accepted.
-- Extra input after the two numbers is ignored.
-- Output uses default stream formatting, so long decimals are rounded to about 6 significant digits.
 
-## Debugging reflection
-(Write 2 to 4 sentences about a problem you hit, such as a diff mismatch or a warning, and how you fixed it.)
+- The direction is case-sensitive, so `ctof` is rejected.
+- Temperatures below absolute zero are not rejected.
+- Extra input after the temperature is ignored.
+- Output shows about 6 significant digits.
